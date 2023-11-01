@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 
   // : Validate that there is at least one command line argument.
   // If not, print an error message and return a non-zero value.
-  if (arguments.size() >= 2) {
+  if (argc <= 1) {
     std::cout << "error: you must supply at least one number\n";
     return 1;
   }
@@ -26,16 +26,15 @@ int main(int argc, char* argv[]) {
   // Each argument is a std::string. You will need to convert each string into
   // a number with the std::stod or std::stof function.
   double sum = 0.0;
-  for (double x = arguments.size(); x > (arguments.size() - 1);) {
-    sum += std::stod(arguments[x]);
-    x++;
+  for (int i = 1; i < argc; i++) {
+    sum += std::stod(arguments[i]);
   }
 
   // : After the loop has finished summing the arguments, calculate the
   // average of the values. Recall that the average is the total value divided
   // by the number of values.
   double average = 0.0;
-  average = sum / arguments.size();
+  average = sum / (argc - 1);
 
   // : Use cout to print out a message of the form
   // average = *AVERAGE*
